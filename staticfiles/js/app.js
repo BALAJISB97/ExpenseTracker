@@ -21,7 +21,7 @@ var csrftoken = getCookie('csrftoken');
 //---------Get current user-----------------------------------
 var userid=null
     function getUser(){
-        var endPoint='http://127.0.0.1:8000/api/user';
+        var endPoint='http://expensetracker147.herokuapp.com/api/user';
          fetch(endPoint)
         .then((resp) => resp.json())
         .then(function(data){
@@ -68,7 +68,7 @@ setUpListeners()
 //----Listeners func-----------------------------//
 function addItem(event){
     console.log('print click button clicked')
-    if(userid==null){window.location.href='http://127.0.0.1:8000/login'}
+    if(userid==null){window.location.href='http://expensetracker147.herokuapp.com/login'}
     var type,desc,value,url
     type=document.querySelector(domstring.inputType).value,
     desc=document.querySelector(domstring.inputDescription).value,
@@ -77,12 +77,12 @@ function addItem(event){
     //post method
     if (type === 'inc')
     {
-        url = 'http://127.0.0.1:8000/api/income'
+        url = 'http://expensetracker147.herokuapp.com/api/income'
         obj={'IncomeValue':value,'Description':desc,'user':userid}
     }
     else
     {
-        url = 'http://127.0.0.1:8000/api/expense'
+        url = 'http://expensetracker147.herokuapp.com/api/expense'
         obj={'ExpenseValue':value,'Description':desc,'user':userid}
     }
     
@@ -119,7 +119,7 @@ function keypress(event){
 
 //-----------------------Get data and display here!-------------------------------------------
 function getIncome(){
-    var IncomeEndPoint='http://127.0.0.1:8000/api/income'
+    var IncomeEndPoint='http://expensetracker147.herokuapp.com/api/income'
     fetch(IncomeEndPoint)
     .then((resp) => resp.json())
     .then(function(incomeData)
@@ -144,7 +144,7 @@ function getIncome(){
 }
 
 function getExpense(){
-    var expenseEndPoint='http://127.0.0.1:8000/api/expense'
+    var expenseEndPoint='http://expensetracker147.herokuapp.com/api/expense'
     var returnVal;
     fetch(expenseEndPoint)
     .then((resp) => resp.json())
@@ -167,7 +167,7 @@ function getExpense(){
 }
 
 function getTotal(){
-    var totalEndPoint='http://127.0.0.1:8000/api/totaldata'
+    var totalEndPoint='http://expensetracker147.herokuapp.com/api/totaldata'
     fetch(totalEndPoint)
     .then((resp) => resp.json())
     .then(function(totalData){
@@ -218,12 +218,12 @@ function DeleteItem(event){
     if (type=='exp')
     {
         dataobj = publicExpenseData
-        url=`http://127.0.0.1:8000/api/deleteExpense/${dataobj[ID].id}`
+        url=`http://expensetracker147.herokuapp.com/api/deleteExpense/${dataobj[ID].id}`
     }
     else
     {
         dataobj = publicIncomeData
-        url=`http://127.0.0.1:8000/api/deleteIncome/${dataobj[ID].id}`
+        url=`http://expensetracker147.herokuapp.com/api/deleteIncome/${dataobj[ID].id}`
     }
     console.log('select item',dataobj[ID])
     console.log(url)
